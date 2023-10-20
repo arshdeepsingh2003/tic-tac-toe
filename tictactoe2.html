@@ -1,0 +1,137 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+<style>
+#but {
+    box-sizing: border-box;
+    width: 95px;
+    height: 40px;
+    border: 1px solid dodgerblue;
+    margin-left: auto;
+    border-radius: 8px;
+    font-family: Verdana,
+        Geneva, Tahoma, sans-serif;
+  
+    background: "file:///C:/Users/mankirat%20singh/Desktop/HD-wallpaper-mr-singh-logo-design-black-and-white.jpg";
+    color: dodgerblue;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+h1
+{text-shadow: 2px 2px red;
+text-decoration: lightblue overline underline;
+			color:red;
+        }
+    td{
+    width:150px;
+    height: 150px;
+   background: brown;
+   font-size: 60px;
+   text-align: center;
+   border-radius: 10px ;
+border:dotted orange;
+}
+table{
+    margin: 20px auto;
+    border-radius: 10px;
+    color: white;
+
+}
+body{
+    background:aqua;
+}
+</style> 
+</head>
+<body>
+
+        <h1><center>TIC TAC TOE</center></h1>
+        <h1 id="player"><center>lets play</center></h1>
+<table >
+     
+    <tr>
+        <td id="r1" onclick="printx('1')"></td>
+        <td id="r2" onclick="printx('2')"></td>
+        <td id="r3" onclick="printx('3')"></td>
+    </tr>
+    <tr  >
+        <td id="r4" onclick="printx('4')"></td>
+        <td id="r5" onclick="printx('5')"></td>
+        <td id="r6" onclick="printx('6')"></td>
+    </tr>
+     <tr>
+        <td id="r7" onclick="printx('7')"></td>
+        <td id="r8" onclick="printx('8')"></td>
+        <td id="r9" onclick="printx('9')"></td>
+      
+    </tr>
+<button id="but" onclick="myfunc_2()">
+            RESET
+        </button>
+</table>
+
+<script>
+let sign = "x";
+let disp = document.getElementById("player");
+let tic;
+
+function myfunc_2() {
+    location.reload();
+    r1 = r2 = r3 = r4 = r5 = r6 = r7 = r8 = r9 = '';
+}
+function printx(number){
+    let tic = document.getElementById("r"+number);
+  console.log(tic);
+  
+  if(tic.innerText==""){
+  tic.innerText=sign;
+  winner();
+ checksign();
+ disp.innerHTML="<center>"+ sign + " 's turn "+"</center>";
+ alert(sign + " 's turn")
+ 
+  }
+  
+  
+}
+function checksign(){
+    if(sign=="x")sign ="o";
+    else sign = "x";
+   
+}
+function getbox(no){
+    return document.getElementById("r"+no).innerHTML;
+}
+function checkmove(a,b,c,m){
+    if(getbox(a)==m && getbox(b)==m && getbox(c)==m)
+       return true;
+    else return false;   
+}
+
+function winner(){
+if(checkmove(1,2,3,sign)||checkmove(4,5,6,sign)||checkmove(7,8,9,sign)
+    ||checkmove(1,4,7,sign)||checkmove(2,5,8,sign)||checkmove(3,6,9,sign)
+    ||checkmove(1,5,9,sign)||checkmove(7,5,3,sign)){
+    disp.innerHTML = "<center>" +sign + " jit gya  weldone!" + "</center>";
+    alert(sign + "  won")
+    for(let i=0;i<=9;i++){
+        document.getElementById("r"+i).innerHTML="";
+    }
+   throw "game end";
+}else{
+    if(getbox(1)!=""&& getbox(2)!=""&& getbox(3)!=""&&
+   getbox(4)!=""&& getbox(5)!=""&& getbox(6)!=""&&
+   getbox(7)!=""&& getbox(8)!=""&& getbox(9)!=""){
+
+    disp.innerHTML = "<center> its a tie </center>";
+       throw "its a tie";
+   }
+}
+}
+
+</script>
+</body>
+</html>
